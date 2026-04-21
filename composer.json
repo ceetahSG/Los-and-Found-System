@@ -1,8 +1,5 @@
 {
     "name": "ceetahsg/lost-and-found-system",
     "description": "A modern Lost and Found System for reuniting items with owners",
-    "type": "project",
-    "require-dev": {
-    "heroku/heroku-buildpack-php" : "dev-master"
-}
+    "type": "project"
 }
