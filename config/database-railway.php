@@ -1,54 +1,27 @@
 <?php
-// Railway Production Database Configuration
+// 1. Get Railway variables (Railway uses MYSQLHOST, not DB_HOST)
+$host = getenv('MYSQLHOST');
+$user = getenv('MYSQLUSER');
+$pass = getenv('MYSQLPASSWORD');
+$name = getenv('MYSQLDATABASE');
+$port = getenv('MYSQLPORT') ?: '3306'; // Default to 3306 if port isn't set
 
-// Get database URL from Railway environment
-$db_url = getenv('DATABASE_URL');
-
-if ($db_url) {
-    // Parse database URL
-    $db_config = parse_url($db_url);
-    
-    define('DB_HOST', $db_config['host']);
-    define('DB_USER', $db_config['user']);
-    define('DB_PASS', $db_config['pass']);
-    define('DB_NAME', ltrim($db_config['path'], '/'));
+// 2. Critical: Check if we are on Railway or Local
+if ($host) {
+    // ON RAILWAY: This will now use TCP/IP because $host is an actual address (like xxx.proxy.rlwy.net)
+    $conn = new mysqli($host, $user, $pass, $name, $port);
 } else {
-    // Fallback to individual environment variables
-    define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-    define('DB_USER', getenv('DB_USER') ?: 'root');
-    define('DB_PASS', getenv('DB_PASSWORD') ?: '');
-    define('DB_NAME', getenv('DB_NAME') ?: 'lost_and_found');
+    // ON LOCAL (XAMPP): Fallback to local settings
+    $conn = new mysqli("127.0.0.1", "root", "", "lost_and_found");
 }
 
-// Get public domain for BASE_URL
-$public_domain = getenv('RAILWAY_PUBLIC_DOMAIN');
-define('BASE_URL', $public_domain ? 'https://' . $public_domain . '/' : 'http://localhost:8000/');
-
-// Create connection
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-// Check connection
+// 3. Check connection
 if ($conn->connect_error) {
     die("Database Connection Error: " . $conn->connect_error);
 }
 
-// Set charset to utf8mb4
 $conn->set_charset("utf8mb4");
 
-// Upload configuration
-define('UPLOAD_PATH', __DIR__ . '/../public/uploads/');
-define('MAX_FILE_SIZE', 5242880); // 5MB
-
-// Enable error logging in production
-if (!getenv('RAILWAY_ENVIRONMENT')) {
-    // Local development
-    ini_set('display_errors', 1);
-    error_reporting(E_ALL);
-} else {
-    // Production
-    ini_set('display_errors', 0);
-    error_reporting(E_ALL);
-    ini_set('log_errors', 1);
-}
-
+// 4. Absolute path for uploads (avoids folder confusion)
+define('UPLOAD_PATH', '/app/public/uploads/');
 ?>
