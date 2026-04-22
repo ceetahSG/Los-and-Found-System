@@ -30,12 +30,12 @@ require_once __DIR__ . '/functions.php';
                     <?php endif; ?>
                     
                     <!-- User Dropdown -->
-                    <div class="relative group">
-                        <button class="hover:text-blue-200 transition font-medium flex items-center gap-2">
+                    <div class="relative" id="userDropdownWrapper">
+                        <button id="userDropdownBtn" class="hover:text-blue-200 transition font-medium flex items-center gap-2">
                             <i class="fas fa-user"></i>
                             <span><?php echo escape($_SESSION['username']); ?></span>
                         </button>
-                        <div class="hidden group-hover:block absolute right-0 mt-2 w-48 bg-blue-700 rounded shadow-lg z-50">
+                        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-48 bg-blue-700 rounded shadow-lg z-50">
                             <a href="<?php echo BASE_URL; ?>profile.php" class="block px-4 py-3 hover:bg-blue-800 transition rounded-t">
                                 <i class="fas fa-cog mr-2"></i> Profile
                             </a>
@@ -83,6 +83,7 @@ require_once __DIR__ . '/functions.php';
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navMenu = document.getElementById('navMenu');
     
@@ -91,11 +92,28 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.toggle('hidden');
         });
         
-        // Close menu when a link is clicked
         document.querySelectorAll('#navMenu a').forEach(link => {
             link.addEventListener('click', function() {
                 navMenu.classList.add('hidden');
             });
+        });
+    }
+
+    // User dropdown click toggle
+    const dropBtn = document.getElementById('userDropdownBtn');
+    const dropMenu = document.getElementById('userDropdown');
+    const dropWrapper = document.getElementById('userDropdownWrapper');
+
+    if (dropBtn && dropMenu) {
+        dropBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            dropMenu.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!dropWrapper.contains(e.target)) {
+                dropMenu.classList.add('hidden');
+            }
         });
     }
 });
