@@ -5,6 +5,6 @@ require_once __DIR__ . '/../includes/functions.php';
 session_destroy();
 
 // Redirect to home
-header('Location: ' . BASE_URL . 'pages/index.php');
+header('Location: ' . BASE_URL . 'index.php');
 exit;
 ?>

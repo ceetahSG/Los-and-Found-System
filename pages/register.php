@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($result['success']) {
                 $success = $result['message'];
                 echo '<div class="fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg">' . $success . '</div>';
-                header('refresh:2;url=' . BASE_URL . 'pages/login.php');
+                header('refresh:2;url=' . BASE_URL . 'login.php');
             } else {
                 $error = $result['message'];
             }
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
 
         <p class="text-center mt-4 text-gray-600">
-            Already have an account? <a href="<?php echo BASE_URL; ?>pages/login.php" class="text-blue-600 font-bold">Login</a>
+            Already have an account? <a href="<?php echo BASE_URL; ?>login.php" class="text-blue-600 font-bold">Login</a>
         </p>
     </div>
 </div>

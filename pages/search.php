@@ -67,7 +67,7 @@ $item_types = ['lost', 'found'];
                 <button type="submit" class="w-full sm:w-auto bg-blue-600 text-white px-6 py-2 md:py-3 rounded-lg hover:bg-blue-700 font-semibold transition">
                     <i class="fas fa-search mr-2"></i> Search
                 </button>
-                <a href="<?php echo BASE_URL; ?>pages/search.php" class="w-full sm:w-auto bg-gray-400 text-white px-6 py-2 md:py-3 rounded-lg hover:bg-gray-500 font-semibold text-center transition">
+                <a href="<?php echo BASE_URL; ?>search.php" class="w-full sm:w-auto bg-gray-400 text-white px-6 py-2 md:py-3 rounded-lg hover:bg-gray-500 font-semibold text-center transition">
                     Reset
                 </a>
             </div>
@@ -122,7 +122,7 @@ $item_types = ['lost', 'found'];
                             <span class="text-sm font-semibold truncate"><?php echo escape($item_data['username']); ?></span>
                         </div>
 
-                        <a href="<?php echo BASE_URL; ?>pages/item-detail.php?id=<?php echo $item_data['id']; ?>" 
+                        <a href="<?php echo BASE_URL; ?>item-detail.php?id=<?php echo $item_data['id']; ?>" 
                            class="w-full block bg-blue-600 text-white text-center py-2 rounded-lg hover:bg-blue-700 font-semibold transition">
                             View Details
                         </a>
@@ -134,7 +134,7 @@ $item_types = ['lost', 'found'];
                 <i class="fas fa-search text-4xl md:text-6xl text-gray-400 mb-4 block"></i>
                 <h3 class="text-xl md:text-2xl font-bold text-gray-700 mb-2">No Items Found</h3>
                 <p class="text-gray-600 mb-6">Try adjusting your search filters</p>
-                <a href="<?php echo BASE_URL; ?>pages/search.php" class="inline-block bg-blue-600 text-white px-6 py-2 md:py-3 rounded-lg hover:bg-blue-700 font-semibold">
+                <a href="<?php echo BASE_URL; ?>search.php" class="inline-block bg-blue-600 text-white px-6 py-2 md:py-3 rounded-lg hover:bg-blue-700 font-semibold">
                     Clear Filters
                 </a>
             </div>

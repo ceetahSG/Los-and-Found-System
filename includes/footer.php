@@ -11,8 +11,8 @@
             <div>
                 <h4 class="font-bold mb-4">Quick Links</h4>
                 <ul class="text-gray-400 space-y-2">
-                    <li><a href="<?php echo BASE_URL; ?>pages/search.php" class="hover:text-white">Search Items</a></li>
-                    <li><a href="<?php echo BASE_URL; ?>pages/post-item.php" class="hover:text-white">Post Item</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>search.php" class="hover:text-white">Search Items</a></li>
+                    <li><a href="<?php echo BASE_URL; ?>post-item.php" class="hover:text-white">Post Item</a></li>
                     <li><a href="#" class="hover:text-white">About Us</a></li>
                 </ul>
             </div>

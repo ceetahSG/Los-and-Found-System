@@ -3,7 +3,7 @@ $page_title = 'Login';
 require_once __DIR__ . '/../includes/header.php';
 
 if (isLoggedIn()) {
-    header('Location: ' . BASE_URL . 'pages/dashboard.php');
+    header('Location: ' . BASE_URL . 'dashboard.php');
     exit;
 }
 
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result = $user->login($email, $password);
             
             if ($result['success']) {
-                header('Location: ' . BASE_URL . 'pages/dashboard.php');
+                header('Location: ' . BASE_URL . 'dashboard.php');
                 exit;
             } else {
                 $error = $result['message'];
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
 
         <p class="text-center mt-4 text-gray-600">
-            Don't have an account? <a href="<?php echo BASE_URL; ?>pages/register.php" class="text-blue-600 font-bold">Register</a>
+            Don't have an account? <a href="<?php echo BASE_URL; ?>register.php" class="text-blue-600 font-bold">Register</a>
         </p>
 
         <!-- Demo Credentials -->

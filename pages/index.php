@@ -16,14 +16,14 @@ $found_items = array_filter($items, fn($i) => $i['item_type'] == 'found');
         
         <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <?php if (isLoggedIn()): ?>
-                <a href="<?php echo BASE_URL; ?>pages/post-item.php" class="bg-white text-blue-600 px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-gray-100 inline-block transition">
+                <a href="<?php echo BASE_URL; ?>post-item.php" class="bg-white text-blue-600 px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-gray-100 inline-block transition">
                     Post an Item
                 </a>
-                <a href="<?php echo BASE_URL; ?>pages/search.php" class="bg-blue-400 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-blue-500 inline-block transition">
+                <a href="<?php echo BASE_URL; ?>search.php" class="bg-blue-400 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-blue-500 inline-block transition">
                     Search Items
                 </a>
             <?php else: ?>
-                <a href="<?php echo BASE_URL; ?>pages/register.php" class="bg-white text-blue-600 px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-gray-100 inline-block transition">
+                <a href="<?php echo BASE_URL; ?>register.php" class="bg-white text-blue-600 px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-gray-100 inline-block transition">
                     Get Started
                 </a>
             <?php endif; ?>
@@ -87,7 +87,7 @@ $found_items = array_filter($items, fn($i) => $i['item_type'] == 'found');
                                 <span class="text-xs bg-gray-200 px-2 py-1 rounded"><?php echo escape($item_data['category']); ?></span>
                             </div>
 
-                            <a href="<?php echo BASE_URL; ?>pages/item-detail.php?id=<?php echo $item_data['id']; ?>" 
+                            <a href="<?php echo BASE_URL; ?>item-detail.php?id=<?php echo $item_data['id']; ?>" 
                                class="block w-full text-center text-blue-600 hover:text-blue-800 font-semibold py-2 hover:bg-blue-50 rounded transition">
                                 View Details →
                             </a>
@@ -104,7 +104,7 @@ $found_items = array_filter($items, fn($i) => $i['item_type'] == 'found');
     <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 md:p-8 text-center">
         <h2 class="text-xl md:text-2xl font-bold mb-4">Haven't found your item yet?</h2>
         <p class="text-gray-600 mb-6">Try using our advanced search feature to find lost or found items with specific filters.</p>
-        <a href="<?php echo BASE_URL; ?>pages/search.php" class="inline-block bg-blue-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-blue-700 transition">
+        <a href="<?php echo BASE_URL; ?>search.php" class="inline-block bg-blue-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-blue-700 transition">
             Go to Advanced Search
         </a>
     </div>

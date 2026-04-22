@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 $success = 'Item posted successfully!';
                 echo '<div class="fixed top-4 right-4 bg-green-500 text-white p-3 md:p-4 rounded-lg shadow-lg z-50 text-sm md:text-base">' . $success . '</div>';
-                header('refresh:2;url=' . BASE_URL . 'pages/dashboard.php');
+                header('refresh:2;url=' . BASE_URL . 'dashboard.php');
             } else {
                 $error = $result['message'];
             }

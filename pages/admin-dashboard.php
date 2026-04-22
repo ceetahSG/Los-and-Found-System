@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </td>
                             <td class="px-4 py-3"><?php echo formatDate($i['date_posted']); ?></td>
                             <td class="px-4 py-3">
-                                <a href="<?php echo BASE_URL; ?>pages/item-detail.php?id=<?php echo $i['id']; ?>" 
+                                <a href="<?php echo BASE_URL; ?>item-detail.php?id=<?php echo $i['id']; ?>" 
                                    class="text-blue-600 hover:text-blue-800 text-sm font-bold mr-2">View</a>
                                 <form method="POST" style="display: inline;">
                                     <?php csrfField(); ?>

@@ -81,7 +81,7 @@ $viewing_conversation = isset($_GET['from']) ? (int)$_GET['from'] : 0;
                 <div class="divide-y max-h-96 overflow-y-auto">
                     <?php if (count($conversations) > 0): ?>
                         <?php foreach ($conversations as $conv): ?>
-                            <a href="<?php echo BASE_URL; ?>pages/messages.php?from=<?php echo $conv['sender_id']; ?>"
+                            <a href="<?php echo BASE_URL; ?>messages.php?from=<?php echo $conv['sender_id']; ?>"
                                class="block p-4 hover:bg-gray-50 transition <?php echo $viewing_conversation == $conv['sender_id'] ? 'bg-blue-50 border-l-4 border-blue-600' : ''; ?>">
                                 <div class="flex items-center gap-3">
                                     <?php if (!empty($conv['profile_picture'])): ?>

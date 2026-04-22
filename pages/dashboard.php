@@ -54,16 +54,16 @@ $resolved_items = array_filter($user_items, fn($i) => $i['status'] == 'resolved'
 
     <!-- Action Buttons -->
     <div class="mb-8 flex gap-4 flex-wrap">
-        <a href="<?php echo BASE_URL; ?>pages/post-item.php" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-bold">
+        <a href="<?php echo BASE_URL; ?>post-item.php" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-bold">
             <i class="fas fa-plus"></i> Post New Item
         </a>
-        <a href="<?php echo BASE_URL; ?>pages/search.php" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-bold">
+        <a href="<?php echo BASE_URL; ?>search.php" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-bold">
             <i class="fas fa-search"></i> Search Items
         </a>
-        <a href="<?php echo BASE_URL; ?>pages/messages.php" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-bold">
+        <a href="<?php echo BASE_URL; ?>messages.php" class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-bold">
             <i class="fas fa-envelope"></i> Messages <?php if ($unread_count > 0) echo '(' . $unread_count . ')'; ?>
         </a>
-        <a href="<?php echo BASE_URL; ?>pages/profile.php" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 font-bold">
+        <a href="<?php echo BASE_URL; ?>profile.php" class="bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 font-bold">
             <i class="fas fa-user"></i> Edit Profile
         </a>
     </div>
@@ -117,9 +117,9 @@ $resolved_items = array_filter($user_items, fn($i) => $i['status'] == 'resolved'
                                 </div>
 
                                 <div class="flex gap-2">
-                                    <a href="<?php echo BASE_URL; ?>pages/item-detail.php?id=<?php echo $item_data['id']; ?>" 
+                                    <a href="<?php echo BASE_URL; ?>item-detail.php?id=<?php echo $item_data['id']; ?>" 
                                        class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">View</a>
-                                    <a href="<?php echo BASE_URL; ?>pages/edit-item.php?id=<?php echo $item_data['id']; ?>" 
+                                    <a href="<?php echo BASE_URL; ?>edit-item.php?id=<?php echo $item_data['id']; ?>" 
                                        class="bg-yellow-600 text-white px-3 py-1 rounded text-sm hover:bg-yellow-700">Edit</a>
                                     <a href="<?php echo BASE_URL; ?>api/delete-item.php?id=<?php echo $item_data['id']; ?>" 
                                        class="bg-red-600 text-white px-3 py-1 rounded text-sm hover:bg-red-700"
@@ -130,7 +130,7 @@ $resolved_items = array_filter($user_items, fn($i) => $i['status'] == 'resolved'
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                <p class="text-gray-500 text-center py-8">No active items. <a href="<?php echo BASE_URL; ?>pages/post-item.php" class="text-blue-600">Post one now</a></p>
+                <p class="text-gray-500 text-center py-8">No active items. <a href="<?php echo BASE_URL; ?>post-item.php" class="text-blue-600">Post one now</a></p>
             <?php endif; ?>
         </div>
 

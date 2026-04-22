@@ -5,7 +5,7 @@ require_once __DIR__ . '/../includes/header.php';
 $item_id = $_GET['id'] ?? 0;
 
 if (!$item_id) {
-    header('Location: ' . BASE_URL . 'pages/search.php');
+    header('Location: ' . BASE_URL . 'search.php');
     exit;
 }
 
@@ -13,7 +13,7 @@ $item = new Item($conn);
 $item_data = $item->getItemById($item_id);
 
 if (!$item_data) {
-    header('Location: ' . BASE_URL . 'pages/search.php');
+    header('Location: ' . BASE_URL . 'search.php');
     exit;
 }
 
@@ -136,7 +136,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send_message'])) {
                     
                     <div class="space-y-3">
                         <?php foreach ($matches as $match): ?>
-                            <a href="<?php echo BASE_URL; ?>pages/item-detail.php?id=<?php echo $match['id']; ?>" 
+                            <a href="<?php echo BASE_URL; ?>item-detail.php?id=<?php echo $match['id']; ?>" 
                                class="block p-4 border border-gray-200 rounded-lg hover:border-blue-600 hover:bg-blue-50 transition">
                                 <div class="flex justify-between items-start">
                                     <div>
@@ -180,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send_message'])) {
                         <i class="fas fa-envelope"></i> Send Message
                     </a>
                 <?php elseif (!isLoggedIn()): ?>
-                    <a href="<?php echo BASE_URL; ?>pages/login.php" class="w-full block bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 font-bold text-center mb-2">
+                    <a href="<?php echo BASE_URL; ?>login.php" class="w-full block bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 font-bold text-center mb-2">
                         <i class="fas fa-envelope"></i> Login to Message
                     </a>
                 <?php endif; ?>

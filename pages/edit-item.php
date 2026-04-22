@@ -6,7 +6,7 @@ requireLogin();
 $item_id = $_GET['id'] ?? 0;
 
 if (!$item_id) {
-    header('Location: ' . BASE_URL . 'pages/dashboard.php');
+    header('Location: ' . BASE_URL . 'dashboard.php');
     exit;
 }
 
@@ -14,7 +14,7 @@ $item = new Item($conn);
 $item_data = $item->getItemById($item_id);
 
 if (!$item_data || $item_data['user_id'] != $_SESSION['user_id']) {
-    header('Location: ' . BASE_URL . 'pages/dashboard.php');
+    header('Location: ' . BASE_URL . 'dashboard.php');
     exit;
 }
 
@@ -101,7 +101,7 @@ $statuses = ['active', 'claimed', 'resolved'];
                 <button type="submit" class="flex-1 bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700">
                     Save Changes
                 </button>
-                <a href="<?php echo BASE_URL; ?>pages/dashboard.php" class="flex-1 bg-gray-400 text-white font-bold py-2 rounded-lg hover:bg-gray-500 text-center">
+                <a href="<?php echo BASE_URL; ?>dashboard.php" class="flex-1 bg-gray-400 text-white font-bold py-2 rounded-lg hover:bg-gray-500 text-center">
                     Cancel
                 </a>
             </div>
