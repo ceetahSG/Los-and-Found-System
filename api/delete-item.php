@@ -1,4 +1,13 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+var_dump([
+    'session' => $_SESSION ?? 'NO SESSION',
+    'item_id' => $_GET['id'] ?? 'NO ID',
+    'file_exists' => file_exists(__DIR__ . '/../includes/functions.php')
+]);
+die();
 require_once __DIR__ . '/../includes/functions.php';
 requireLogin();
 
