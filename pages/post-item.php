@@ -28,20 +28,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $result = $item->postItem($_SESSION['user_id'], $category, $item_type, $title, $description, $location, $date_lost_found, $color, $features);
             
             if ($result['success']) {
-                $item_id = $result['item_id'];
+    $item_id = $result['item_id'];
 
-                // Handle image upload
-                if (!empty($_FILES['image']['name'])) {
-                    $upload_result = $item->uploadImage($item_id, $_FILES['image']);
-                    if (!$upload_result['success']) {
-                        $error = $upload_result['message'] . ' (but item was posted)';
-                    }
-                }
+    if (!empty($_FILES['image']['name'])) {
+        $upload_result = $item->uploadImage($item_id, $_FILES['image']);
+    }
 
-                $success = 'Item posted successfully!';
-                echo '<div class="fixed top-4 right-4 bg-green-500 text-white p-3 md:p-4 rounded-lg shadow-lg z-50 text-sm md:text-base">' . $success . '</div>';
-                header('refresh:2;url=' . BASE_URL . 'dashboard.php');
-            } else {
+    // Redirect immediately — clears form
+    header('Location: ' . BASE_URL . 'dashboard.php?msg=posted');
+    exit;
+} else {
                 $error = $result['message'];
             }
         }

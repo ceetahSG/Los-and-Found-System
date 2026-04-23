@@ -106,8 +106,8 @@ $resolved_items = array_filter($user_items, fn($i) => $i['status'] == 'resolved'
                             <div class="flex items-start justify-between">
                                 <div class="flex items-start gap-4 flex-1">
                                     <?php if (!empty($item_data['image_url'])): ?>
-                                        <img src="<?php echo BASE_URL . 'public/uploads/' . escape($item_data['image_url']); ?>" 
-                                             alt="Item" class="w-20 h-20 object-cover rounded">
+                                        <img src="<?php echo escape($item_data['image_url']); ?>" 
+                                            alt="Item" class="w-20 h-20 object-cover rounded">
                                     <?php else: ?>
                                         <div class="w-20 h-20 bg-gray-300 flex items-center justify-center rounded">
                                             <i class="fas fa-image text-gray-400"></i>

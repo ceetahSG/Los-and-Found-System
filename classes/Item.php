@@ -44,36 +44,31 @@ class Item {
 
     // Upload item image
     public function uploadImage($item_id, $file) {
-        $target_dir = UPLOAD_PATH . "items/";
-        if (!is_dir($target_dir)) {
-            mkdir($target_dir, 0777, true);
-        }
+    require_once __DIR__ . '/../vendor/autoload.php';
 
-        $file_name = uniqid() . '_' . basename($file['name']);
-        $target_file = $target_dir . $file_name;
-        $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $allowed = ['jpg','jpeg','png','gif'];
+    $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+    if (!in_array($ext, $allowed)) return ['success' => false, 'message' => 'Invalid file type'];
+    if ($file['size'] > 5242880) return ['success' => false, 'message' => 'File too large'];
 
-        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
-        if (!in_array($file_type, $allowed)) {
-            return ['success' => false, 'message' => 'Invalid file type'];
-        }
+    \Cloudinary\Configuration\Configuration::instance([
+        'cloud' => [
+            'cloud_name' => getenv('CLOUDINARY_CLOUD_NAME'),
+            'api_key'    => getenv('CLOUDINARY_API_KEY'),
+            'api_secret' => getenv('CLOUDINARY_API_SECRET'),
+        ]
+    ]);
 
-        if ($file['size'] > MAX_FILE_SIZE) {
-            return ['success' => false, 'message' => 'File too large'];
-        }
+    $uploader = new \Cloudinary\Api\Upload\UploadApi();
+    $result = $uploader->upload($file['tmp_name'], ['folder' => 'lost-and-found']);
+    $url = $result['secure_url'];
 
-        if (move_uploaded_file($file['tmp_name'], $target_file)) {
-            $pic_path = "items/" . $file_name;
-            $query = "UPDATE {$this->table} SET image_url = ? WHERE id = ?";
-            $stmt = $this->conn->prepare($query);
-            $stmt->bind_param("si", $pic_path, $item_id);
-            $stmt->execute();
+    $stmt = $this->conn->prepare("UPDATE {$this->table} SET image_url = ? WHERE id = ?");
+    $stmt->bind_param("si", $url, $item_id);
+    $stmt->execute();
 
-            return ['success' => true, 'message' => 'Image uploaded', 'path' => $pic_path];
-        } else {
-            return ['success' => false, 'message' => 'Upload failed'];
-        }
-    }
+    return ['success' => true, 'path' => $url];
+}
 
     // Get all active items with search filters - FIXED
     public function searchItems($category = '', $item_type = '', $location = '', $status = 'active') {

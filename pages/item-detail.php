@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send_message'])) {
             <!-- Item Image -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden mb-6">
                 <?php if (!empty($item_data['image_url'])): ?>
-                    <img src="<?php echo BASE_URL . 'public/uploads/' . escape($item_data['image_url']); ?>" 
+                   <img src="<?php echo escape($item_data['image_url']); ?>" 
                          alt="Item" class="w-full h-96 object-cover">
                 <?php else: ?>
                     <div class="w-full h-96 bg-gray-300 flex items-center justify-center">

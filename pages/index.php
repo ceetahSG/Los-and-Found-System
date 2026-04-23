@@ -60,7 +60,7 @@ $found_items = array_filter($items, fn($i) => $i['item_type'] == 'found');
                 <?php foreach (array_slice($items, 0, 6) as $item_data): ?>
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition">
                         <?php if (!empty($item_data['image_url'])): ?>
-                            <img src="<?php echo BASE_URL . 'public/uploads/' . escape($item_data['image_url']); ?>" 
+                           <img src="<?php echo escape($item_data['image_url']); ?>" 
                                  alt="Item" class="w-full h-40 md:h-48 object-cover">
                         <?php else: ?>
                             <div class="w-full h-40 md:h-48 bg-gray-300 flex items-center justify-center">
