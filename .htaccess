@@ -1,0 +1,9 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^$ public/index.php [L]
+RewriteRule ^pages/(.*)$ public/pages/$1 [L]
+RewriteRule ^public/(.*)$ public/$1 [L]
+RewriteRule ^api/(.*)$ api/$1 [L]

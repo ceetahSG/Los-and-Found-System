@@ -1,7 +1,58 @@
 <?php
 // Bootstrap app-wide constants if not defined elsewhere.
+if (!function_exists('loadLocalEnvFile')) {
+    function loadLocalEnvFile($filePath) {
+        if (!is_readable($filePath)) {
+            return;
+        }
+
+        $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        if ($lines === false) {
+            return;
+        }
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '' || str_starts_with($line, '#') || !str_contains($line, '=')) {
+                continue;
+            }
+
+            [$name, $value] = array_map('trim', explode('=', $line, 2));
+            if ($name === '' || getenv($name) !== false) {
+                continue;
+            }
+
+            $value = trim($value, "\"'");
+            putenv($name . '=' . $value);
+            $_ENV[$name] = $value;
+            $_SERVER[$name] = $value;
+        }
+    }
+}
+
+if (!getenv('DB_HOST') && !getenv('DATABASE_URL')) {
+    loadLocalEnvFile(dirname(__DIR__) . '/.env');
+}
+
 if (!defined('BASE_URL')) {
-    $baseUrl = getenv('BASE_URL') ?: '/';
+    $baseUrl = getenv('BASE_URL');
+    if (!$baseUrl && isset($_SERVER['SCRIPT_NAME'])) {
+        $scriptName = str_replace('\\', '/', $_SERVER['SCRIPT_NAME']);
+        $projectBase = '';
+
+        if (str_contains($scriptName, '/public/')) {
+            $projectBase = substr($scriptName, 0, strpos($scriptName, '/public/'));
+        } else {
+            $projectBase = rtrim(dirname(dirname($scriptName)), '/');
+        }
+
+        $baseUrl = $projectBase !== '' ? $projectBase . '/' : '/';
+    }
+
+    if (!$baseUrl) {
+        $baseUrl = '/';
+    }
+
     define('BASE_URL', rtrim($baseUrl, '/') . '/');
 }
 
